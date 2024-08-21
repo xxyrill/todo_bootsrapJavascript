@@ -78,8 +78,8 @@
             deleteButton.className = 'btn btn-danger btn-sm';
             deleteButton.textContent = 'Delete';
             deleteButton.addEventListener('click', function() {
-                itemToDelete = listItem; // Store the item to be deleted
-                $('#deleteModal').modal('show'); // Show the confirmation modal
+                itemToDelete = listItem;
+                $('#deleteModal').modal('show');
             });
 
             buttonGroup.appendChild(editButton);
@@ -93,9 +93,9 @@
 
         document.getElementById('confirmDelete').addEventListener('click', function() {
             if (itemToDelete) {
-                itemToDelete.remove(); // Remove the item if the user confirms deletion
-                itemToDelete = null; // Reset the item to delete
-                $('#deleteModal').modal('hide'); // Hide the modal
+                itemToDelete.remove();
+                itemToDelete = null;
+                $('#deleteModal').modal('hide');
             }
         });
     </script>
