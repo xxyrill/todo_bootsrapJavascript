@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>MyPhoto</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <h3>TODO</h3>
+        <form class="form-inline" id="todoForm">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-sm" id="name" placeholder="Add todo...">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm" id="addButton">Add</button>
+        </form>
+        <ul class="list-group mt-3" id="todoList"></ul>
+    </div>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script>
+        document.getElementById('addButton').addEventListener('click', function() {
+            const todoText = document.getElementById('name').value;
+
+            if (todoText !== "") {
+                addTodoItem(todoText);
+                document.getElementById('name').value = "";
+            }
+        });
+
+        function addTodoItem(todoText) {
+            const listItem = document.createElement('li');
+            listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+
+            const todoContent = document.createElement('span');
+            todoContent.textContent = todoText;
+
+            const buttonGroup = document.createElement('div');
+
+            const editButton = document.createElement('button');
+            editButton.className = 'btn btn-warning btn-sm mr-2';
+            editButton.textContent = 'Edit';
+            editButton.addEventListener('click', function() {
+                const newText = prompt('Edit your todo:', todoContent.textContent);
+                if (newText !== null && newText.trim() !== "") {
+                    todoContent.textContent = newText;
+                }
+            });
+
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'btn btn-danger btn-sm';
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', function() {
+                listItem.remove();
+            });
+
+            buttonGroup.appendChild(editButton);
+            buttonGroup.appendChild(deleteButton);
+
+            listItem.appendChild(todoContent);
+            listItem.appendChild(buttonGroup);
+
+            document.getElementById('todoList').appendChild(listItem);
+        }
+    </script>
+</body>
+</html>
